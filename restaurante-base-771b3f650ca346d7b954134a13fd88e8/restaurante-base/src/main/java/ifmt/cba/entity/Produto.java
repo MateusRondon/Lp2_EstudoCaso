@@ -1,6 +1,6 @@
-import ifmt.cba.entity;
+package ifmt.cba.entity;
 
-import javax.annotation.processing.Generated;
+// import javax.annotation.processing.Generated;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
@@ -9,7 +9,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GeneratedType;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -17,9 +17,9 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name="produto")
-public class Prodoto {
+public class Produto {
     @Id
-    @GeneratedValue(strategy = GeneratedType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int codigo;
     @Column (name = "nome") 
     private String nome;
@@ -35,8 +35,8 @@ public class Prodoto {
     
     @Column (name = "estoque_minimo") 
     private int estoque_minimo;
-    @ManyToOne (Fetch = FetchType.EAGER)    
-    @JoinColumn (nam = "id_grupo")
+    @ManyToOne (fetch  = FetchType.EAGER)    
+    @JoinColumn (name = "id_grupo")
 
     private GrupoAlimentar grupoAlimentar;
 
@@ -94,7 +94,41 @@ public class Prodoto {
         result = prime * result + codigo;
         return result;
     }
+    @Override 
+    public boolean equals(Object obj){
+        if(this == obj){
+            return true;
+        }
+        if(obj == null){
+            return false;
+        }
+        if(getClass() !=obj.getClass()){
+            return false;
+        }
+        Produto other = (Produto) obj;
+        if(codigo !=other.codigo){
+            return false;
+        }
+        return true;
+    }
 
-    
+    public String validar(){
+        String retorno = " ";
+        if(this.nome == null || this.nome.length()<3){
+        retorno += "Nome invalido";
+        }
+        if(this.custoUnidade <= 0){
+            retorno += "Custo por unidade invalido";
+        }
+        if(this.valorEnergetico < 0){
+            retorno += "Valor energetico invalido";
+        }
+        if(estoque < 0){
+            retorno += "Estoque Invalido";
+        }
+        if(this.grupoAlimentar == null || !this.grupoAlimentar.validar().isEmpty()){
+            retorno += "Grupo Alimentar Invalido";
+        }   
+        return retorno; 
+    }
 }
-
