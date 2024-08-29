@@ -24,6 +24,11 @@ public static void main(String[] args) {
             bairroDTO.setNome("Coxipo");
             bairroDTO.setCustoEntrega(8.00f);
             bairroNegocio.inserir(bairroDTO);
+            
+            bairroDTO = new BairroDTO();
+            bairroDTO.setNome("Ribeirao");
+            bairroDTO.setCustoEntrega(15.00f);
+            bairroNegocio.inserir(bairroDTO);
 
         } catch (PersistenciaException | NegocioException e) {
             e.printStackTrace();
