@@ -21,10 +21,11 @@ public class Produto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int codigo;
+
     @Column (name = "nome") 
     private String nome;
     
-    @Column (name = "custo_unidade") 
+    @Column (name = "custoUnidade") 
     private float custoUnidade;
     
     @Column (name = "valor_energetico") 
@@ -35,10 +36,13 @@ public class Produto {
     
     @Column (name = "estoque_minimo") 
     private int estoque_minimo;
+    
+    
     @ManyToOne (fetch  = FetchType.EAGER)    
     @JoinColumn (name = "id_grupo")
-
     private GrupoAlimentar grupoAlimentar;
+
+
 
     public int getCodigo() {
         return codigo;

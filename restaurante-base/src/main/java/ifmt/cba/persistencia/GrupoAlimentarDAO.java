@@ -1,6 +1,8 @@
 package ifmt.cba.persistencia;
 
 import java.util.List;
+
+import ifmt.cba.dto.GrupoAlimentarDTO;
 import ifmt.cba.entity.GrupoAlimentar;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
@@ -36,5 +38,10 @@ public class GrupoAlimentarDAO extends DAO<GrupoAlimentar> {
 			throw new PersistenciaException("Erro na selecao por parte do nome - " + ex.getMessage());
 		}
 		return listaGrupoAlimentar;
+	}
+
+	public void inserir(GrupoAlimentarDTO grupoAlimentarDTO) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'inserir'");
 	}
 }
