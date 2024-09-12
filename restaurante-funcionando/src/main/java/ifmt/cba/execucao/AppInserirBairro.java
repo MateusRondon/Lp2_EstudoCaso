@@ -12,7 +12,7 @@ public static void main(String[] args) {
 
         try {
             BairroDAO bairroDAO = new BairroDAO(
-                    FabricaEntityManager.getEntityManagerProducao());
+                FabricaEntityManager.getEntityManagerProducao());
             BairroNegocio bairroNegocio = new BairroNegocio(bairroDAO);
     
             BairroDTO bairroDTO = new BairroDTO();
